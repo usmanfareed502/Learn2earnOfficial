@@ -1,0 +1,107 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios" class="py-2 px-2  header">
+
+    <ion-searchbar  slot="end" style="text-align: left;" class="searchbar" type="animated"></ion-searchbar>
+
+    <ion-button fill="clear" color="light"  class="backbtn">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+      Back
+    </ion-button>
+
+    <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <ion-icon class="buttonrefresh" name="menu-outline"></ion-icon>
+      </ion-menu-toggle>
+    </ion-buttons>
+
+    <ion-title >
+     Add Amount
+    </ion-title>
+  
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <!-- header -->
+  <ion-list class="listheader3" style="margin-top: 10px;">
+    <div class="">
+      <ion-row>
+        <ion-col   size="12">
+          <div class="me-auto  d-lg-block">
+            <!-- <h2 class="text-black font-w600">Property</h2> -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active text1 ">Home</li>
+              <li class="breadcrumb-item li1 page">Add Amount</li>
+              <!-- <li class="breadcrumb-item" (click)="Plot()"><a class="plot">Plot</a></li>
+              <li class="breadcrumb-item" (click)="add_plot()"><a class="page">Add Plot</a></li> -->
+            </ol>
+          </div>
+        </ion-col>
+        <!-- <ion-col size-lg="1.3" size-md="1.7" size="" (click)="Refresh()">
+          <a  class="btn btn-primary top rounded primary1 light me-3">Refresh</a>
+        </ion-col> -->
+      </ion-row>
+    </div>
+  </ion-list>
+
+  <ion-card >
+    <ion-row>
+      <ion-col size-lg="6" size-md="6"  size="12">
+        <div class="mb-2 form-group">
+          <label class="text-label label1">From</label>
+          <ion-select mode="ios" interface="action-sheet"  placeholder="Select From">
+            <ion-select-option></ion-select-option>
+          </ion-select>
+        </div>
+      </ion-col>
+      <ion-col size-lg="6" size-md="6"  size="12">
+        <div class="mb-2 form-group">
+          <label class="text-label label1">Type</label>
+          <ion-select mode="ios" interface="action-sheet"  placeholder="Select Type">
+            <ion-select-option value="transaction">Transction</ion-select-option>
+            <ion-select-option value="expense">Expense</ion-select-option>
+          </ion-select>
+        </div>
+      </ion-col>
+      <ion-col size-lg="6" size-md="6" size="12">
+        <div class="mb-2 form-group">
+          <label class="label1">Sub Expense</label>
+          <ion-input type="text" class="form-control" placeholder="Enter sub expense" required></ion-input>
+       </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-lg="6" size-md="6" size="12">
+        <div class="mb-2 form-group">
+          <label class="label1">To</label>
+          <ion-select  mode="ios"  interface="action-sheet" placeholder="Select type">
+            <ion-select-option></ion-select-option>         
+          </ion-select>
+       </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-lg="6" size-md="6" size="12">
+        <div class="mb-2 form-group">
+          <label class="label1">Debit</label>
+          <ion-input type="text" class="form-control" placeholder="Enter amount" required></ion-input>
+       </div>
+      </ion-col>
+      <ion-col size-lg="6" size-md="6" size="12">
+        <div class="mb-2 form-group">
+          <label class="label1">Credit</label>
+          <ion-input type="text"   class="form-control" placeholder="Enter amount" required></ion-input>
+       </div>
+      </ion-col>
+      <ion-col size-lg="6" size-md="6" size="12">
+        <div class="mb-2 form-group">
+          <label class="label1">Description</label>
+          <ion-input type="text"   class="form-control" placeholder="Enter description" required></ion-input>
+       </div>
+      </ion-col>
+    </ion-row>
+    <ion-button expand="block" color="tertiary" class="button2" >Submit</ion-button>
+    </ion-card>
+
+</ion-content>
+

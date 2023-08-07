@@ -1,0 +1,160 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios" class="py-2 px-2  header">
+
+    <ion-searchbar  slot="end" style="text-align: left;"   class="searchbar" type="animated"></ion-searchbar>
+
+    <ion-button fill="clear" color="light" class="backbtn">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+      Back
+    </ion-button>
+
+    <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <ion-icon class="buttonrefresh" name="menu-outline"></ion-icon>
+      </ion-menu-toggle>
+    </ion-buttons>
+
+    <ion-title class="pagetitle">
+     See Account
+    </ion-title>
+  
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-list class="listheader2" style="margin-top: 10px;">
+    <div class="">
+      <ion-row>
+        <ion-col size-lg="10.9" size-md="10" size="12" class="colhome">
+          <div class="me-auto  d-lg-block">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active text1 ">Home</li>
+              <li class="breadcrumb-item li1 page">See Account</li>
+            </ol>
+          </div>
+        </ion-col>
+        <ion-col size-lg="1" size-md="1.7" size="">
+          <a  class="btn btn-primary top rounded refresh_button primary1 light me-3">
+            Refresh
+          </a>
+          <ion-spinner color="tertiary" name="circles" style="margin-top: 10px;margin-left:20px;"></ion-spinner>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-list>
+
+  <ion-row>
+    <div class="form-head2 ion-margin ">
+      <div class="me-auto w-100">
+        <div class="d-flex flex-column">
+          <h2 class="text-black mx-3 mt-4 mb-1 font-w600 page-titles"></h2>
+          <h2 class="text-black mx-3 mb-4 mt-1 fs-5 font-w800">Total Net Balance</h2>
+        </div>
+      </div> 
+    </div>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size-md="4" size="12">
+      <div class="form-head ion-margin ">
+        <div class="me-auto w-100">
+          <div class="d-flex flex-column">
+            <h2 class="text-black mx-3 mt-4 mb-1 font-w600 page-titles">Rs.100000</h2>
+            <h2 class="text-black mx-3 mb-4 mt-1 fs-5 font-w800">Net Balance</h2>
+          </div>
+        </div> 
+      </div>
+    </ion-col>
+    <ion-col size-md="4" size="12" >
+      <div class="form-head ion-margin ">
+        <div class="me-auto w-100">
+          <div class="d-flex flex-column">
+            <h2 class="text-black mx-3 mt-4 mb-1 font-w600 page-titles">Rs.500</h2>
+            <h2 class="text-black mx-3 mb-4 mt-1 fs-5 font-w800">Credit Balance</h2>
+          </div>
+        </div> 
+      </div>
+    </ion-col>
+    <ion-col size-md="4" size="12">
+      <div class="form-head ion-margin ">
+        <div class="me-auto w-100">
+          <div class="d-flex flex-column">
+            <h2 class="text-black mx-3 mt-4 mb-1 font-w600 page-titles">Rs.100</h2>
+            <h2 class="text-black mx-3 mb-4 mt-1 fs-5 font-w800">Debit Balance</h2>
+          </div>
+        </div> 
+      </div>
+    </ion-col>
+  </ion-row>
+  <div >
+    <ion-card class="card2">
+      <ion-row>
+       <ion-col size-lg="6" size="12">
+        <div class="form-group">
+          <ion-select mode="ios" class="padd" interface="action-sheet"placeholder="Select From"  >
+            <ion-select-option>asdasd</ion-select-option>
+          </ion-select>
+        </div>
+       </ion-col>
+       <ion-col size-lg="6" size="12">
+        <div class="form-group">
+          <ion-select mode="ios"  class="padd" interface="action-sheet" placeholder="Select type" >
+            <ion-select-option value ="transaction">Transaction</ion-select-option> 
+            <ion-select-option value ="installment">Installments</ion-select-option> 
+            <ion-select-option value ="addmission">Addmission</ion-select-option> 
+            <ion-select-option value ="expense">Expense</ion-select-option>               
+          </ion-select>
+        </div>
+       </ion-col>
+       <ion-col size-lg="6" size="12">
+        <div class="form-group">
+          <ion-select mode="ios"  class="padd" interface="action-sheet"  placeholder="Sub Expense">
+            <ion-select-option >Brookly</ion-select-option>
+            <!-- <ion-select-option value="Electricity Bill">Electricity Bill</ion-select-option>
+            <ion-select-option value="PTCL Bill Institute">PTCL Bill Institute</ion-select-option>
+            <ion-select-option value="PTCL Bill Software House">PTCL Bill Software House</ion-select-option>
+            <ion-select-option value="UPS Kist">UPS Kist</ion-select-option>
+            <ion-select-option value="Trust">Trust</ion-select-option>
+            <ion-select-option value="Other">Other</ion-select-option> -->
+          </ion-select>
+        </div>
+       </ion-col>
+      </ion-row>
+     </ion-card>
+  </div>
+
+  <ion-card style="border-radius: 8px;">
+    <div class="card-body">
+                                        
+      <div class="table-responsive">
+          <table class="table table-bordered align-middle nowrap">
+              <thead>
+                  <tr>
+                      <th scope="col">No</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Account</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Credit</th>
+                      <th scope="col">Debit</th>
+                      <th scope="col">NetBalance</th>
+                      <th scope="col">Date</th>
+                  </tr>
+              </thead>
+              <tbody >
+                  <tr>
+                      <th scope="row">1</th>
+                      <td>Expense</td>       
+                      <td>1000</td>       
+                      <td>Lunch</td>  
+                      <td>1000</td>         
+                      <td>200</td> 
+                      <td>2000</td>  
+                      <td>07/02/2023</td>         
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  </ion-card>
+
+</ion-content>
