@@ -34,7 +34,7 @@ export class HomePage  implements OnInit{
   constructor(private menu: MenuController,public route:Router,public toast:ToastService,
     public modalController: ModalController,public alert:AlertService,
     private animationCtrl: AnimationController,
-    public global:GlobalService,public ApiCall:ApiService  ) {
+    public global:GlobalService,public ApiCall:ApiService) {
     this.menu.enable(true);
   }
 
