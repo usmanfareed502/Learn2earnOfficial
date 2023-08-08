@@ -1,10 +1,11 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AnimationController, MenuController, ModalController } from '@ionic/angular';
+import { AnimationController, ModalController } from '@ionic/angular';
 import { ToastService } from '../core/toasts/toast.service';
 import { AlertService } from '../core/alerts/alert.service';
 import { GlobalService } from '../core/global.service';
 import { ApiService } from '../core/api.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -44,7 +45,7 @@ export class HomePage  implements OnInit{
  
      this.data = res.user;
      if (this.data === undefined) {
-       this.route.navigate(['/login'])
+       this.route.navigate(['/home'])
      }
      else {
        console.log(this.data);
