@@ -37,4 +37,7 @@ export class AppComponent {
   see_account(){
     this.router.navigate(['see-account'])
   }
+  add_team(){
+    this.router.navigate(['add-team'])
+  }
 }

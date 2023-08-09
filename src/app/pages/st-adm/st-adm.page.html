@@ -40,19 +40,19 @@
 <ion-card >
 <ion-row>
   <ion-col size-lg="6" size-md="6"  size="12">
-    <div class="input">
+    <div class="mb-2 form-group">
       <label class="label1">Student Name</label>
-      <ion-input class="input" type="text"  placeholder="Enter Student Name" [(ngModel)]="student_data.name" fill="outline"></ion-input>
+      <ion-input class="input" type="text"  [(ngModel)]="student_data.name" fill="outline" placeholder="Enter Father Name" fill="outline"></ion-input>
     </div>
   </ion-col>
   <ion-col size-lg="6" size-md="6"  size="12">
     <div class="mb-2 form-group">
-      <label class="text-label label1">Course</label>
-      <ion-select  mode="ios" class="selector"    [(ngModel)]="student_data.st_gender"  fill="outline" interface="action-sheet" placeholder="Select course">
-        <ion-select-option value="Male">Male</ion-select-option>
-        <ion-select-option value="Female">Female</ion-select-option>
-      </ion-select>
-    </div>  
+      <label class="text-label label1">Student Gender</label>
+      <ion-select [(ngModel)]="student_data.st_gender" mode="ios" interface="action-sheet" placeholder="Select course" style="height: 55px; padding-bottom: 10px;">
+  <ion-select-option value="Male">Male</ion-select-option>
+  <ion-select-option value="Female">Female</ion-select-option>
+</ion-select>
+    </div>
   </ion-col>
   <ion-col size-lg="6" size-md="6"  size="12">
     <div class="mb-2 form-group">

@@ -42,7 +42,11 @@ const routes: Routes = [
   {
     path: 'see-account',
     loadChildren: () => import('./pages/see-account/see-account.module').then( m => m.SeeAccountPageModule)
+  },  {
+    path: 'add-team',
+    loadChildren: () => import('./pages/add-team/add-team.module').then( m => m.AddTeamPageModule)
   },
+
 
 ];
 

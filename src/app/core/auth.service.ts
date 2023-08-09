@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
  // enter your api folder name
- //const apiUrl = 'http://localhost/l2e-official-apis/public/';
- const apiUrl = 'http://localhost/l2earn/public/';
+ const apiUrl = 'http://localhost/l2e-official-apis/public/';
+//  const apiUrl = 'http://localhost/l2earn/public/';
 
 @Injectable({
   providedIn: 'root'
