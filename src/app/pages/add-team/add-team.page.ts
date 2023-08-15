@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-team',
@@ -10,7 +11,7 @@ export class AddTeamPage implements OnInit {
   public isOpenseeExpensedetailModal = false;
 
 
-  constructor() { }
+  constructor(public route: Router,) { }
 
   ngOnInit() {
   }
@@ -19,4 +20,8 @@ export class AddTeamPage implements OnInit {
     this.isOpenseeExpensedetailModal = isOpen;
   }
 
+
+  home() {
+    this.route.navigate(['home'])
+  }
 }

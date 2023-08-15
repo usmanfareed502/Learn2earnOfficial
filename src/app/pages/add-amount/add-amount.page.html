@@ -49,34 +49,39 @@
       <ion-col size-lg="6" size-md="6"  size="12">
         <div class="mb-2 form-group">
           <label class="text-label label1">From</label>
-          <ion-select mode="ios" interface="action-sheet"  placeholder="Select From">
-            <ion-select-option></ion-select-option>
-          </ion-select>
+          <select placeholder="Search" class="form-select form-select-lg mb-3 select" style="height: 56px;" aria-label="Select From">
+            <option value="" disabled selected>Select Form</option>
+            <option value="Full Stack Development">M.Bilal</option>
+            <option value="Web Development">Zagham</option>
+          </select>
         </div>
       </ion-col>
       <ion-col size-lg="6" size-md="6"  size="12">
         <div class="mb-2 form-group">
           <label class="text-label label1">Type</label>
-          <ion-select mode="ios" interface="action-sheet"  placeholder="Select Type">
-            <ion-select-option value="transaction">Transction</ion-select-option>
-            <ion-select-option value="expense">Expense</ion-select-option>
-          </ion-select>
+          <select placeholder="Search" class="form-select form-select-lg mb-3 select" style="height: 56px;" aria-label="Type">
+            <option value="" disabled selected>Type</option>
+            <option value="Full Stack Development">Transaction</option>
+            <option value="Web Development">Expense</option>
+          </select>
         </div>
       </ion-col>
       <ion-col size-lg="6" size-md="6" size="12">
         <div class="mb-2 form-group">
-          <label class="label1">Sub Expense</label>
-          <ion-input type="text" class="form-control" placeholder="Enter sub expense" required></ion-input>
-       </div>
+            <label class="label1">Sub Expense</label>
+                <ion-input class="input"  type="number"  placeholder="Enter Sub-Expenses" fill="outline"></ion-input>
+          </div>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size-lg="6" size-md="6" size="12">
         <div class="mb-2 form-group">
           <label class="label1">To</label>
-          <ion-select  mode="ios"  interface="action-sheet" placeholder="Select type">
-            <ion-select-option></ion-select-option>         
-          </ion-select>
+          <select placeholder="Search" class="form-select form-select-lg mb-3 select" style="height: 56px;" aria-label="To">
+            <option value="" disabled selected>To</option>
+            <option value="Full Stack Development">Ahmad</option>
+            <option value="Web Development">Ali</option>
+          </select>
        </div>
       </ion-col>
     </ion-row>
@@ -84,20 +89,20 @@
       <ion-col size-lg="6" size-md="6" size="12">
         <div class="mb-2 form-group">
           <label class="label1">Debit</label>
-          <ion-input type="text" class="form-control" placeholder="Enter amount" required></ion-input>
-       </div>
+          <ion-input class="input"  type="number"  placeholder="Enter Depit" fill="outline"></ion-input>    
+          </div>
       </ion-col>
       <ion-col size-lg="6" size-md="6" size="12">
         <div class="mb-2 form-group">
           <label class="label1">Credit</label>
-          <ion-input type="text"   class="form-control" placeholder="Enter amount" required></ion-input>
-       </div>
+          <ion-input class="input"  type="number"  placeholder="Enter Amount" fill="outline"></ion-input>    
+           </div>
       </ion-col>
       <ion-col size-lg="6" size-md="6" size="12">
         <div class="mb-2 form-group">
           <label class="label1">Description</label>
-          <ion-input type="text"   class="form-control" placeholder="Enter description" required></ion-input>
-       </div>
+          <ion-input class="input"  type="number"  placeholder="Enter Description" fill="outline"></ion-input>
+               </div>
       </ion-col>
     </ion-row>
     <ion-button expand="block" color="tertiary" class="button2" >Submit</ion-button>

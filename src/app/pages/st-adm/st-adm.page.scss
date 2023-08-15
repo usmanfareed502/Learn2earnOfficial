@@ -58,3 +58,10 @@ ion-select{
 .select-wrapper{
     margin-top: -20px ;
 }
+.select{
+    height: 56px;
+    border: 1px solid #ced4da;
+}
+.select:hover {
+    border-color: black;
+}

@@ -26,3 +26,10 @@ ion-select{
 .backbtn{
     margin-left: 10px;
 }
+.select{
+    height: 56px;
+    border: 1px solid #ced4da;
+}
+.select:hover {
+    border-color: black;
+}

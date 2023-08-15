@@ -19,7 +19,7 @@ export class ApiService {
          let data = JSON.parse(String(result));
          this.global.set_user(data);
          if (data.error === false) {
-          this.router.navigate(['home']);
+          this.router.navigate(['/home']);
           this.toast.LoginSuccessfull();
           console.log(data);
           } 

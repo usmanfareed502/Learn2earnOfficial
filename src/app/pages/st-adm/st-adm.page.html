@@ -48,10 +48,15 @@
   <ion-col size-lg="6" size-md="6"  size="12">
     <div class="mb-2 form-group">
       <label class="text-label label1">Student Gender</label>
-      <ion-select [(ngModel)]="student_data.st_gender" mode="ios" interface="action-sheet" placeholder="Select course" style="height: 55px; padding-bottom: 10px;">
+      <!-- <ion-select [(ngModel)]="student_data.st_gender" mode="ios" interface="action-sheet" placeholder="Select course" style="height: 55px; padding-bottom: 10px;">
   <ion-select-option value="Male">Male</ion-select-option>
   <ion-select-option value="Female">Female</ion-select-option>
-</ion-select>
+</ion-select> -->
+<select class="form-select select" aria-label="Select Gender" style="height: 56px;" [(ngModel)]="student_data.st_gender">
+  <option value="" disabled selected>Select Gender</option>
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+</select>
     </div>
   </ion-col>
   <ion-col size-lg="6" size-md="6"  size="12">
@@ -88,23 +93,37 @@
 <ion-col size-lg="6" size-md="6"  size="12">
     <div class="mb-2 form-group">
       <label class="text-label label1">Course</label>
-      <ion-select  mode="ios" class="selector" [(ngModel)]="student_data.course" fill="outline" interface="action-sheet" placeholder="Select course">
+      <!-- <ion-select  mode="ios" class="selector" [(ngModel)]="student_data.course" fill="outline" interface="action-sheet" placeholder="Select course">
         <ion-select-option value="Full Stack Development">Full Stack Development</ion-select-option>
         <ion-select-option value="Web Development">Web Development</ion-select-option>
         <ion-select-option value="Mobile App Development">Mobile App Development</ion-select-option>
         <ion-select-option value="Graphic Designing">Graphic Designing</ion-select-option>
-      </ion-select>
+      </ion-select> -->
+      <select placeholder="Search" class="form-select form-select-lg mb-3 select" style="height: 56px;" aria-label="Select Course" [(ngModel)]="student_data.course">
+        <option value="" disabled selected>Select Course</option>
+        <option value="Full Stack Development">Full Stack Development</option>
+        <option value="Web Development">Web Development</option>
+        <option value="Mobile App Development">Mobile App Development</option>
+        <option value="Graphic Designing">Graphic Designing</option>
+      </select>
     </div>
   </ion-col>
   <ion-col size-lg="6" size-md="6"  size="12">
     <div class="mb-2 form-group">
       <label class="text-label label1">Course Duration</label>
-     <ion-select mode="ios" class="selector"  [(ngModel)]="student_data.c_duration"  (ionChange)="handleCourseDurationChange($event)" fill="outline" interface="action-sheet" placeholder="Select course duration" >
+     <!-- <ion-select mode="ios" class="selector"  [(ngModel)]="student_data.c_duration"  (ionChange)="handleCourseDurationChange($event)" fill="outline" interface="action-sheet" placeholder="Select course duration" >
   <ion-select-option value="1 Month">1 Month</ion-select-option>
   <ion-select-option value="2 Month">2 Month</ion-select-option>
   <ion-select-option value="3 Month">3 Month</ion-select-option>
   <ion-select-option value="6 Month">6 Month</ion-select-option>
-</ion-select>
+</ion-select> -->
+<select class="form-select form-select-lg mb-3 select" aria-label="Select Course duration"  [(ngModel)]="student_data.c_duration">
+  <option value="" disabled selected>Select course duration</option>
+  <option value="1 Month">1 Month</option>
+  <option value="2 Month">2 Month</option>
+  <option value="3 Month">3 Month</option>
+  <option value="6 Month">6 Month</option>
+</select>
     </div>
   </ion-col>
 
