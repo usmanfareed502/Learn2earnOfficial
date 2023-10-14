@@ -119,7 +119,7 @@
   </ion-list>
 
   <ion-row>
-    <ion-col>
+    <ion-col size="5"> 
       <ion-list class="selectlist">
         <ion-item>
           <ion-select aria-label="Student" interface="action-sheet" placeholder="Select Type" mode="ios" (ionChange)="select_student_Course($event)">
@@ -132,7 +132,7 @@
         </ion-item>
       </ion-list>
     </ion-col>
-    <ion-col>
+    <ion-col size="5">
       <ion-list class="selectlist">
         <ion-item>
           <ion-select aria-label="Student" interface="action-sheet" placeholder="Select Student"  mode="ios" (ionChange)="select_status($event)">
@@ -143,6 +143,11 @@
           </ion-select>
         </ion-item>
       </ion-list>
+    </ion-col>
+    <ion-col>
+      <ion-button (click)="filterdata()">
+        <ion-icon name="filter-outline"></ion-icon>
+      </ion-button>
     </ion-col>
 
   </ion-row>

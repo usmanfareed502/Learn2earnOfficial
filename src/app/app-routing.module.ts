@@ -3,17 +3,17 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'st-adm',
@@ -42,10 +42,16 @@ const routes: Routes = [
   {
     path: 'see-account',
     loadChildren: () => import('./pages/see-account/see-account.module').then( m => m.SeeAccountPageModule)
-  },  {
+  },
+  {
     path: 'add-team',
     loadChildren: () => import('./pages/add-team/add-team.module').then( m => m.AddTeamPageModule)
   },
+  {
+    path: 'team-detail',
+    loadChildren: () => import('./pages/team-detail/team-detail.module').then( m => m.TeamDetailPageModule)
+  },
+
 
 
 ];

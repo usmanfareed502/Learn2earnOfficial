@@ -19,7 +19,7 @@ export class InstallmentsPage implements OnInit {
   public student_details:any =[];  
   public All_Students:any = [];
   public show : any = false;
-  public student_installments: any  = {a_id:'',c_id:'', id:'',remaning_amount:'', date:'',installment_no:'',upcoming_installment:''};
+  public student_installments: any  = {id:'',c_id:'',m_id:'',payable_amount:''};
   next_install: any= 0;
   public installment_by_id:any[] = [];
   public install_no: any;
@@ -50,11 +50,6 @@ export class InstallmentsPage implements OnInit {
         }
         console.log(this.data);
      });
-     var now = new Date();
-     const current : any = new Date(now.getFullYear(), now.getMonth()+1, 1);
-  const firstDateOfMonth = format(current, 'yyyy-MM-dd')
-  console.log(firstDateOfMonth)
-  this.student_installments.upcoming_installment = firstDateOfMonth;
     }
   
     home(){
@@ -72,38 +67,31 @@ async Get_Students(){
 
   async select_student($event:any){
     console.log($event);
-    const z = {id:$event ,c_id:this.data.c_id}
+    const z = {id:$event}
     console.log(z);
-    
     await  this.ApiCall.Get_InstallmentbyId(z);
     await  this.global.Idinstallment.subscribe(res=>{
       console.log(res);
-      const x = res[0];
-      console.log(x)
-      this.student_details = x;
-      this.current_instalment = x.installment_no;
-      this.current_instalment ++;
+      this.student_details = res[0];
       console.log(this.student_details)
-      console.log(this.student_details.id);
-
     });
     console.log(this.student_installments)
     this.show = true;
   }
 
-  installment($event:any){
-    console.log($event.target.value);
-    const Y = $event.target.value;
-    this.student_installments.remaning_amount =  this.student_details.total_fee - Y;  
-  }
+  // installment($event:any){
+  //   console.log($event.target.value);
+  //   const Y = $event.target.value;
+  //   this.student_installments.remaning_amount =  this.student_details.total_fee - Y;  
+  // }
   
 
     async Add_Installments(){
       console.log(this.student_installments);
-     this.student_installments.id = this.student_details.id
-     this.student_installments.c_id = this.student_details.c_id;
-     this.student_installments.a_id = this.student_details.c_id;
-     this.student_installments.installment_no = this.current_instalment;
+     this.student_installments.id = this.student_details.id; 
+     this.student_installments.c_id = this.student_details.c_id; 
+     this.student_installments.m_id = this.student_details.m_id;
+     this.student_installments.payable_amount  = this.student_details.installment_amount;
  await    this.ApiCall.Add_Installments(this.student_installments);
    await   this.toast.Installments_Successfull();
    this.student_installments= {c_id:'', id:'',remaning_amount:'',a_month:'',upcoming_installment:''};

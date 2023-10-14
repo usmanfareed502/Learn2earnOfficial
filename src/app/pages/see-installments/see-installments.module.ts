@@ -7,12 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { SeeInstallmentsPageRoutingModule } from './see-installments-routing.module';
 
 import { SeeInstallmentsPage } from './see-installments.page';
-
+import { DatePipe } from '@angular/common';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    DatePipe,
     SeeInstallmentsPageRoutingModule,
     
   ],

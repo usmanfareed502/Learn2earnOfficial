@@ -33,11 +33,12 @@
             </ol>
           </div>
         </ion-col>
-        <ion-col size-lg="1" size-md="1.7" size="">
-          <a  class="btn btn-primary top rounded refresh_button primary1 light me-3">
+        <ion-col size-lg="1" size-md="1.7" size="" (click)="refresh()">
+          <a class="btn btn-primary top refresh_button rounded primary1 light me-3" *ngIf="!refresher">
             Refresh
           </a>
-          <ion-spinner color="tertiary" name="circles" style="margin-top: 10px;margin-left:20px;"></ion-spinner>
+          <ion-spinner color="tertiary" name="circles" *ngIf="refresher"
+            style="margin-top: 10px;margin-left:10px;"></ion-spinner>
         </ion-col>
       </ion-row>
     </div>
@@ -59,7 +60,7 @@
       <div class="form-head ion-margin ">
         <div class="me-auto w-100">
           <div class="d-flex flex-column">
-            <h2 class="text-black mx-3 mt-4 mb-1 font-w600 page-titles">Rs.100000</h2>
+            <h2 class="text-black mx-3 mt-4 mb-1 font-w600 page-titles">Rs.{{this.netbalance}}</h2>
             <h2 class="text-black mx-3 mb-4 mt-1 fs-5 font-w800">Net Balance</h2>
           </div>
         </div> 
@@ -69,7 +70,7 @@
       <div class="form-head ion-margin ">
         <div class="me-auto w-100">
           <div class="d-flex flex-column">
-            <h2 class="text-black mx-3 mt-4 mb-1 font-w600 page-titles">Rs.500</h2>
+            <h2 class="text-black mx-3 mt-4 mb-1 font-w600 page-titles">Rs.{{this.credit}}</h2>
             <h2 class="text-black mx-3 mb-4 mt-1 fs-5 font-w800">Credit Balance</h2>
           </div>
         </div> 
@@ -79,7 +80,7 @@
       <div class="form-head ion-margin ">
         <div class="me-auto w-100">
           <div class="d-flex flex-column">
-            <h2 class="text-black mx-3 mt-4 mb-1 font-w600 page-titles">Rs.100</h2>
+            <h2 class="text-black mx-3 mt-4 mb-1 font-w600 page-titles">Rs.{{this.debit}}</h2>
             <h2 class="text-black mx-3 mb-4 mt-1 fs-5 font-w800">Debit Balance</h2>
           </div>
         </div> 
@@ -89,35 +90,25 @@
   <div >
     <ion-card class="card2">
       <ion-row>
-       <ion-col size-lg="6" size="12">
+
+       <ion-col size-lg="4" size="12">
         <div class="form-group">
-          <ion-select mode="ios" class="padd" interface="action-sheet"placeholder="Select From"  >
-            <ion-select-option>asdasd</ion-select-option>
+          <ion-select mode="ios"  class="padd" interface="action-sheet" placeholder="Select type" (ionChange)="selecttype($event)">
+            <ion-select-option value ="Admission Fee">Admission Fee</ion-select-option> 
+            <ion-select-option value ="Installment">Installments</ion-select-option> 
+            <ion-select-option value ="Expense">Expense</ion-select-option> 
           </ion-select>
         </div>
        </ion-col>
-       <ion-col size-lg="6" size="12">
+       <ion-col size-lg="4" size="12">
         <div class="form-group">
-          <ion-select mode="ios"  class="padd" interface="action-sheet" placeholder="Select type" >
-            <ion-select-option value ="transaction">Transaction</ion-select-option> 
-            <ion-select-option value ="installment">Installments</ion-select-option> 
-            <ion-select-option value ="addmission">Addmission</ion-select-option> 
-            <ion-select-option value ="expense">Expense</ion-select-option>               
-          </ion-select>
+          <ion-input type="month" (ionChange)="get_installmentbymoont($event)"></ion-input>
         </div>
        </ion-col>
-       <ion-col size-lg="6" size="12">
-        <div class="form-group">
-          <ion-select mode="ios"  class="padd" interface="action-sheet"  placeholder="Sub Expense">
-            <ion-select-option >Brookly</ion-select-option>
-            <!-- <ion-select-option value="Electricity Bill">Electricity Bill</ion-select-option>
-            <ion-select-option value="PTCL Bill Institute">PTCL Bill Institute</ion-select-option>
-            <ion-select-option value="PTCL Bill Software House">PTCL Bill Software House</ion-select-option>
-            <ion-select-option value="UPS Kist">UPS Kist</ion-select-option>
-            <ion-select-option value="Trust">Trust</ion-select-option>
-            <ion-select-option value="Other">Other</ion-select-option> -->
-          </ion-select>
-        </div>
+       <ion-col size-lg="2">
+        <ion-button (click)="filterdata()">
+          <ion-icon name="filter-outline"></ion-icon>
+        </ion-button>
        </ion-col>
       </ion-row>
      </ion-card>
@@ -132,7 +123,6 @@
                   <tr>
                       <th scope="col">No</th>
                       <th scope="col">Type</th>
-                      <th scope="col">Account</th>
                       <th scope="col">Description</th>
                       <th scope="col">Credit</th>
                       <th scope="col">Debit</th>
@@ -141,15 +131,14 @@
                   </tr>
               </thead>
               <tbody >
-                  <tr>
-                      <th scope="row">1</th>
-                      <td>Expense</td>       
-                      <td>1000</td>       
-                      <td>Lunch</td>  
-                      <td>1000</td>         
-                      <td>200</td> 
-                      <td>2000</td>  
-                      <td>07/02/2023</td>         
+                  <tr *ngFor="let item of transactionDetail ; let i = index">
+                      <th scope="row">{{i}}</th>
+                      <td>{{item.type}}</td>       
+                      <td>{{item.description}}</td>  
+                      <td>{{item.credit}}</td>         
+                      <td>{{item.debit}}</td> 
+                      <td>{{item.netbalance}}</td>  
+                      <td>{{item.t_date}}</td>         
                   </tr>
               </tbody>
           </table>

@@ -1,34 +1,40 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
 import { GlobalService } from './global.service';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { ToastService } from './toasts/toast.service';
 import { AlertService } from './alerts/alert.service';
+import { IonSplitPane, MenuController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   data: any;
-
-  constructor(public global:GlobalService, public authservice:AuthService, public router:Router,public toast:ToastService ,public alert:AlertService, ) { }
+  constructor(public global:GlobalService, public authservice:AuthService, public router:Router,public toast:ToastService ,public alert:AlertService, private menu : MenuController ) { }
 
     // userlogin function 
-    async user_Login(data: any) {
+    async user_Login(data: any):Promise<any> {
       await this.authservice.con(data , 'userlogin').then((result) => {
          let data = JSON.parse(String(result));
          this.global.set_user(data);
+         console.log(data)
          if (data.error === false) {
+          
           this.router.navigate(['/home']);
+          this.menu.enable(true);
           this.toast.LoginSuccessfull();
           console.log(data);
+          return true
           } 
           else{
             console.log(data);
             this.alert.Password_alert();
+            return false
           }
        }, (err) => {
          console.log(err);
+         return false
        });
      }
   //  STUDENTS admission
@@ -65,6 +71,18 @@ export class ApiService {
         this.alert.connection();
       });
     }
+    async getstudentfilter(data:any) {
+      console.log(data);
+      await this.authservice.con( data , 'getstudentfilter').then((result) => {
+          this.data = JSON.parse(String(result));
+         console.log(this.data);
+          this.global.set_Students(this.data);
+
+        }, (err) => {
+          console.log(err);
+          this.alert.connection();
+        });
+      }
 
      
               //  GET all Installments
@@ -73,17 +91,29 @@ export class ApiService {
                     await    this.authservice.getdata('getInstallments/' + c_id).then((result) => {
                         this.data = JSON.parse(String(result));
                         console.log(this.data);
-                        console.log(this.data.filter((x: { fee_status: string; }) => x.fee_status === 'complete').length)
-                        console.log(this.data.filter((x: { fee_status: string; }) => x.fee_status === 'pending').length)
+                        console.log(this.data.filter((x: { f_status: string; }) => x.f_status === 'paid').length)
+                        console.log(this.data.filter((x: { f_status: string; }) => x.f_status === 'pending').length)
                         this.global.studentInstallMENT(this.data);
-                        this.global.pending_fee_st(this.data.filter((x : {fee_status : string}) => x.fee_status === 'pending').length)
-                        this.global.complete_fee_st(this.data.filter((x : {fee_status : string}) => x.fee_status === 'complete').length)
+                        this.global.pending_fee_st(this.data.filter((x : {f_status : string}) => x.f_status === 'pending').length)
+                        this.global.complete_fee_st(this.data.filter((x : {f_status : string}) => x.f_status === 'paid').length)
                         return result;
                       }, (err) => {
                         console.log(err);
                         this.alert.connection();
                       });
                     }
+                    async   GetInstallmentsbyidandst(data:any) {
+                      // console.log(data + " GetInstallmentsbymonth")
+                          await    this.authservice.con( data, 'getInstallmentsbyidandstatus').then((result) => {
+                              this.data = JSON.parse(String(result));
+                              this.global.studentInstallMENT(this.data);
+                              console.log(this.data,'data Updated');
+                              return result;
+                            }, (err) => {
+                              console.log(err);
+                              this.alert.connection();
+                            });
+                          }
 
 
               //  GET GetInstallments by student status and by month getstudentbycourse/'+data
@@ -147,6 +177,7 @@ export class ApiService {
           // console.log(data + 'i_id');
           await this.authservice.con(data, 'get_Installments').then((result) => {
               this.data = JSON.parse(String(result));
+              console.log(this.data)
               this.global.get_installment_byId(this.data);
             console.log(this.data);
               return result;
@@ -236,4 +267,172 @@ export class ApiService {
 
 
 
+      //////
+        ///get team member
+    async  Get_allteam(c_id:any) {
+      console.log(c_id + 'status');
+          await    this.authservice.getdata('getteamember/'+c_id).then((result) => {
+              this.data = JSON.parse(String(result));
+              this.global.set_members(this.data);
+              console.log(this.data,'data Updated');
+              return result;
+            }, (err) => {
+              console.log(err);
+              this.alert.connection();
+            });
+          }
+             // team insert
+        async insert_tmember(data: any) {
+          await this.authservice.con(data , 'insertmember').then((result) => {
+            this.data = JSON.parse(String(result));
+            if (this.data.error === false) {
+              this.toast.AccountAdded();
+              console.log(this.data);
+              return;
+              } 
+              console.log(this.data);
+          }, (err) => {
+            console.log(err);
+            // this.alert.connection();
+          });
+        }
+        async insert_teamexpence(data: any) {
+          await this.authservice.con(data , 'updatecustomerbalance').then((result) => {
+            this.data = JSON.parse(String(result));
+            if (this.data.error === false) {
+              this.toast.AccountAdded();
+              console.log(this.data);
+              return;
+              } 
+              console.log(this.data);
+          }, (err) => {
+            console.log(err);
+            // this.alert.connection();
+          });
+        }
+        async api_getexpenses(c_id: any) {
+          await this.authservice.getdata('getexpenses/' + c_id).then((result) => {
+              this.data = JSON.parse(String(result));
+              this.global.get_expenses(this.data);
+              console.log(this.data);
+              return result;
+            }, (err) => {
+              console.log(err);
+            });
+          }
+
+           // POST expense
+      async api_insertexpense(data:any) {
+        await this.authservice.con(data,'insertexpense').then((result) => {
+        this.data = JSON.parse(String(result));
+      console.log(this.data);
+        return result;
+        }, (err) => {
+        console.log(err);
+      this.alert.connection();
+       }); 
+      }
+
+      async api_insertexpensedetail(data:any) {
+        await this.authservice.con(data,'insertexpensedetail').then((result) => {
+        this.data = JSON.parse(String(result));
+      console.log(this.data);
+        return result;
+        }, (err) => {
+        console.log(err);
+      this.alert.connection();
+       }); 
+      }
+      async api_getexpensesdetail(ex_id : any) {
+        await this.authservice.getdata('getexpensesdetail/' + ex_id).then((result) => {
+            this.data = JSON.parse(String(result));
+            this.global.get_expensedetail(this.data);
+            console.log(this.data);
+            return result;
+          }, (err) => {
+            console.log(err);
+          });
+        }
+        async api_getcustomertotalbalance(customer_id: any) {
+          await this.authservice.getdata('getcustomertotalNetbalance/' + customer_id).then((result) => {
+             this.data = JSON.parse(String(result));
+             console.log(this.data)
+             this.global.set_customertotalNetbalance(this.data);
+             // this.router.navigate(['customerdetail']);
+           }, (err) => {
+             console.log(err);
+           });
+         }
+         api_getcustomerdetails(e_id : any) {
+          this.authservice.getdata('getcustomerdetailbuid/'+e_id).then((result) => {
+            this.data = JSON.parse(String(result));
+            this.global.set_Customerdetails(this.data);
+           // this.router.navigate(['customerdetail']);
+          }, (err) => {
+            console.log(err);
+          });
+        }
+        api_getacctransaction(c_id : any) {
+          this.authservice.getdata('gettransactions/'+c_id).then((result) => {
+            this.data = JSON.parse(String(result));
+            this.global.set_gettransaction(this.data);
+           // this.router.navigate(['customerdetail']);
+          }, (err) => {
+            console.log(err);
+          });
+        }
+        async api_gettransactionsbyfilter(data:any) {
+          await this.authservice.con(data,'gettransactionsbyfilter').then((result) => {
+          this.data = JSON.parse(String(result));
+          this.global.set_gettransaction(this.data);
+        console.log(this.data);
+          return result;
+          }, (err) => {
+          console.log(err);
+        this.alert.connection();
+         }); 
+        }
+        async api_transactionbycid(c_id: any) {
+          await this.authservice.getdata('get_transactbyc_id/' + c_id).then((result) => {
+              this.data = JSON.parse(String(result));
+              this.global.set_getteamtrdetail(this.data);
+              console.log(this.data);
+              return result;
+            }, (err) => {
+              console.log(err);
+            });
+          }
+        async api_get_expamountonc_id(c_id: any) {
+          await this.authservice.getdata('get_expamountonc_id/' + c_id).then((result) => {
+              this.data = JSON.parse(String(result));
+              this.global.set_getExpenseAmount(this.data);
+              console.log(this.data);
+              return result;
+            }, (err) => {
+              console.log(err);
+            });
+          }
+          async api_get_transactbydateandcid(data:any) {
+            await this.authservice.con(data,'get_transactbydateandcid').then((result) => {
+            this.data = JSON.parse(String(result));
+            this.global.set_getteamtrdetail(this.data);
+          console.log(this.data);
+            return result;
+            }, (err) => {
+            console.log(err);
+          this.alert.connection();
+           }); 
+          }
+          async api_get_expenseamountbycidanddate(data:any) {
+            await this.authservice.con(data,'get_expenseamountbycidanddate').then((result) => {
+            this.data = JSON.parse(String(result));
+            this.global.set_getExpenseAmount(this.data);
+          console.log(this.data);
+            return result;
+            }, (err) => {
+            console.log(err);
+          this.alert.connection();
+           }); 
+          }
+        
 }

@@ -19,7 +19,7 @@ export class StAdmPage implements OnInit {
 
   constructor(public route: Router, public apiCall: ApiService, public gloabl: GlobalService, public authser: AuthService) { }
 
-  public student_data: any = { c_id: 1, a_id: '', name: '', f_name: '', st_gender: '', contact_no: '', address: '', reference: '', cnic: '', course: '', c_duration: '', upcoming_installment: '', ad_date: '', total_fee: '', per_installment: '', total_installments: '', remaning_amount: '', status: '', st_status: '', fee_status: '', end_date: '', rg_fee: '',installments:[{remaning_amount: ''}] }
+  public student_data: any = { c_id: 1, a_id: '', name: '', f_name: '', st_gender: '', contact_no: '', address: '', reference: '', cnic: '', course: '', c_duration: '', upcoming_installment: '', ad_date: '', total_fee: '', per_installment: '', total_installments: '', remaning_amount: '', status: '', st_status: '', fee_status: '', end_date: '', rg_fee: '',installments:[] }
   ngOnInit() {
 
     this.gloabl.Userlogin.subscribe(res => {
@@ -51,41 +51,38 @@ export class StAdmPage implements OnInit {
     let currentYear = d.getFullYear();
     console.log(currentMonth, 'current');
 
-    const x = [];
     this.student_data.installments = [];
-    for (let i = 0; i < getCourseMonth; i++) {
-      let monthIndex = currentMonth + i;
-      let year = currentYear;
-
-      if (monthIndex >= 12) {
-        monthIndex = monthIndex % 12;
-        year += Math.floor((currentMonth + i) / 12);
-      }
-
-      x.push({ month: nameMonth[monthIndex], status: 'pending', year: year });
-    }
-    console.log(x);
-    this.student_data.installments = x;
+    this.student_data.installments = this.generateInstallmentDates(d,this.student_data.total_installments);
     
 
     console.log($event.target.value);
     this.student_data.per_installment = (this.student_data.total_fee / this.student_data.total_installments).toFixed(0);
-    console.log(this.student_data);
   }
+  public generateInstallmentDates(startDate: any | Date, numberOfMonths: number):any {
+    const installmentDates = [];
+    let installment_no = 0;
+    for (let i = 0; i < numberOfMonths; i++) {
+      const date = new Date(startDate);
+      date.setMonth(startDate.getMonth() + i);
+      const formattedDate = this.formatDate(date);
+      console.log(installment_no++)
+      installmentDates.push({ date:formattedDate, status: 'pending',installment_no: installment_no});
 
-  async Submit_Data() {
-    this.student_data.c_id = this.data.c_id;
-    this.student_data.a_id = this.data.c_id;
-    console.log(this.student_data);
-    this.student_data.end_date = this.end_date1;
-    await this.apiCall.AddStudents(this.student_data);
+    }
+    console.log(installmentDates)
     
-    this.student_data = { c_id: '', a_id: '', name: '', f_name: '', st_gender: '', contact_no: '', address: '', reference: '', cnic: '', course: '', c_duration: '', upcoming_installment: '', ad_date: '', total_fee: '', per_installment: '', total_installments: '', advance: '', remaning_amount: '', status: '', st_status: '', fee_status: '', end_date: '', rg_fee: '' }
-    this.route.navigate(['st-details']);
-
+    return installmentDates;
+  }
+  public formatDate(date: { getDate: () => any; getMonth: () => number; getFullYear: () => any; }) {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
   }
   
   month($event:any) {
+    this.student_data.installments = [];
+    this.student_data.installments = this.generateInstallmentDates($event.target.value,this.student_data.total_installments);
     console.log($event.target.value);
 
     // Get the current date
@@ -118,25 +115,25 @@ export class StAdmPage implements OnInit {
   }
 
 
-  handleCourseDurationChange(event: any) {
-    const selectedDuration = event.detail.value;
-    const months = this.getNumberOfMonths(selectedDuration);
+  // handleCourseDurationChange(event: any) {
+  //   const selectedDuration = event.detail.value;
+  //   const months = this.getNumberOfMonths(selectedDuration);
 
-    const currentDate = new Date();
-    const endDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + months, currentDate.getDate());
-    console.log(endDate)
-    this.end_date1 = format(endDate, 'yyyy-MM-dd');
-    var end_date = this.end_date1;
-    console.log(end_date);
-    console.log('Course Duration:', months, 'month(s)');
-    console.log('Start Date:', currentDate.toDateString());
-    console.log('End Date:', endDate.toDateString());
-    this.student_data.end_date = this.end_date1;
+  //   const currentDate = new Date();
+  //   const endDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + months, currentDate.getDate());
+  //   console.log(endDate)
+  //   this.end_date1 = format(endDate, 'yyyy-MM-dd');
+  //   var end_date = this.end_date1;
+  //   console.log(end_date);
+  //   console.log('Course Duration:', months, 'month(s)');
+  //   console.log('Start Date:', currentDate.toDateString());
+  //   console.log('End Date:', endDate.toDateString());
+  //   this.student_data.end_date = this.end_date1;
 
-  }
+  // }
 
   updateRemainingFee() {
-    this.student_data.remaining_amount = this.student_data.total_fee - this.student_data.advance;
+    this.student_data.remaning_amount = this.student_data.total_fee;
   }
 
   home() {
@@ -165,6 +162,16 @@ export class StAdmPage implements OnInit {
       // You can customize this based on your requirements
       this.student_data.upcoming_installment = ''; // Set an appropriate value for the past year
     }
+
+  }
+  async Submit_Data() {
+    this.student_data.c_id = this.data.c_id;
+    this.student_data.a_id = this.data.c_id;
+    this.student_data.end_date = this.end_date1;
+    console.log(this.student_data)
+     await this.apiCall.AddStudents(this.student_data);
+    this.student_data = { a_id: '', name: '', f_name: '', st_gender: '', contact_no: '', address: '', reference: '', cnic: '', course: '', c_duration: '', upcoming_installment: '', ad_date: '', total_fee: '', per_installment: '', total_installments: '', advance: '', remaning_amount: '', status: '', st_status: '', fee_status: '', rg_fee: '' }
+    this.route.navigate(['st-details']);
 
   }
 }

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { IonSplitPane, MenuController } from '@ionic/angular';
 import { ToastService } from './core/toasts/toast.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { ToastService } from './core/toasts/toast.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  @ViewChild('ionSplitPane') ionSplitPane!: IonSplitPane;
   constructor(public router:Router,private menu: MenuController,public toast:ToastService,) {}
 
 
@@ -28,11 +29,9 @@ export class AppComponent {
     this.router.navigate(['see-installments'])
   }
   login(){
-    this.router.navigate(['login'])
+    this.router.navigate(['/login'])
     this.toast.LogoutSuccessfull();
-  }
-  add_amount(){
-    this.router.navigate(['add-amount'])
+    this.ionSplitPane.disabled = true
   }
   see_account(){
     this.router.navigate(['see-account'])

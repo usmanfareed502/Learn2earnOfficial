@@ -118,5 +118,54 @@ export class GlobalService {
        console.log(this.complete_fee)
      }
 
-
+     ///
+     private getmembers = new BehaviorSubject<any>('');
+     public Getmembers = this.getmembers.asObservable();
+     set_members(getmembers: any)
+     {
+       this.getmembers.next(getmembers);
+        console.log(getmembers);
+       }
+       private expenses = new BehaviorSubject('');
+       public Expenses = this.expenses.asObservable();
+       get_expenses(expenses:any) {
+         this.expenses.next(expenses);
+         console.log(expenses);
+       }
+       private expensedetail = new BehaviorSubject('');
+      public Expensedetail = this.expensedetail.asObservable();
+      get_expensedetail(expensedetail:any) {
+        this.expensedetail.next(expensedetail);
+        console.log(expensedetail);
+      }
+      private customertotalNetbalance = new BehaviorSubject<any>('');
+      public CustomertotalNetbalance = this.customertotalNetbalance.asObservable();
+    
+      set_customertotalNetbalance(customertotalNetbalance: any) {
+        this.customertotalNetbalance.next(customertotalNetbalance);
+      }
+      private customerdetails = new BehaviorSubject<any>('');
+    public Customerdetails = this.customerdetails.asObservable();
+  
+    set_Customerdetails(customerdetails: any) {
+      this.customerdetails.next(customerdetails);
+    } 
+      private transaction = new BehaviorSubject<any>('');
+    public Transaction = this.transaction.asObservable();
+  
+    set_gettransaction(transaction: any) {
+      this.transaction.next(transaction);
+    } 
+      private transactiondetail = new BehaviorSubject<any>('');
+    public Transactiondetail = this.transactiondetail.asObservable();
+  
+    set_getteamtrdetail(transactiondetail: any) {
+      this.transactiondetail.next(transactiondetail);
+    } 
+      private totalExpenseAmount = new BehaviorSubject<any>('');
+    public TotalExpenseAmount = this.totalExpenseAmount.asObservable();
+  
+    set_getExpenseAmount(totalExpenseAmount: any) {
+      this.totalExpenseAmount.next(totalExpenseAmount);
+    } 
 }

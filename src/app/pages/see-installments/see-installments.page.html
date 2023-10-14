@@ -109,12 +109,22 @@
             <ion-select mode="ios" (ionChange)="select_status($event)" class="w-100" placeholder="Select Status">
               <ion-select-option value="all">All</ion-select-option>
               <ion-select-option value="pending">Pending</ion-select-option>
-              <ion-select-option value="complete">Successfull</ion-select-option>
+              <ion-select-option value="paid">Successfull</ion-select-option>
             </ion-select>
         </ion-item> 
       <ion-item>
         <ion-input type="month" (ionChange)="get_installmentbymoont($event)"></ion-input>
       </ion-item>
+      <ion-button (click)="filterdata()">
+        <ion-icon name="filter-outline"></ion-icon>
+      </ion-button>
+      <ion-col size-lg="1" size-md="1.7" size="" (click)="refresh()">
+        <a class="btn btn-primary top refresh_button rounded primary1 light me-3" *ngIf="!refresher">
+          Refresh
+        </a>
+        <ion-spinner color="tertiary" name="circles" *ngIf="refresher"
+          style="margin-top: 10px;margin-left:10px;"></ion-spinner>
+      </ion-col>
     </ion-row>
     </ion-list>
   </div>
@@ -127,16 +137,15 @@
               <thead>
                   <tr>
                       <th scope="col">No</th>
+                      <th scope="col">Installment NO</th>
                       <th scope="col">Student Name</th>
                       <th scope="col">Contact No</th>
                       <th scope="col">Course</th>
-                      <th scope="col">Addmission Date</th>
+                      <th scope="col">Installment Amount</th>
+                      <th scope="col">Payable Date</th>
                       <th scope="col">Monthly Installment Status</th>
-                      <th scope="col">Next Installment Date</th>
-                      <th scope="col">Remaining Fee</th>
+                      <!-- <th scope="col">Remaining Fee</th> -->
                       <th scope="col">Total Fee</th>
-                      <th scope="col">Per Monthly Installment</th>
-                      <th scope="col">Course End-Date</th>
                       <th scope="col">Action</th>
                   </tr>
               </thead>
@@ -144,19 +153,16 @@
 
                   <tr *ngFor="let data of student_Installments ; let i=index;">
                       <th scope="row">{{i+1}} </th>
+                      <td>{{data.installment_no}}</td>        
                       <td>{{data.name}}</td>        
                       <td>{{data.contact_no}}</td>                  
                       <td>{{data.course}}</td>       
-                      <td>{{data.ad_date}}</td>
+                      <td>{{data.payable_amount}}</td>       
+                      <td>{{data.payable_date}}</td>       
                       <td>
-                <p [ngClass]="{'pendingg':data.fee_status === 'pending','cancell':data.fee_status === 'confirim','successfulll':data.fee_status === 'Successfull', 'complete':data.fee_status === 'complete'}"
-                  style="margin:0px;">{{data.fee_status}}</p>
-              </td>                
-                      <td>{{data.upcoming_installment}}</td>                
-                      <td>{{data.remaning_amount}}</td>                
+                        <ion-chip  [color]="data.f_status == 'paid'? 'success':'danger'">{{data.f_status == 'pending'? 'UNPAID': 'paid' | uppercase}}</ion-chip></td>                
+                      <!-- <td>{{data.remaning_amount}}</td>                 -->
                       <td>{{data.total_fee}}</td>                
-                      <td>{{data.per_installment}}</td>                   
-                      <td>{{data.end_date}}</td>                   
                       <td>
                         <ul class="list-unstyled hstack gap-1 mb-0" >
                           <li (click)="view_all_installment(data.id)">

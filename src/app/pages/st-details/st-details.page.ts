@@ -35,7 +35,7 @@ export class StDetailsPage implements OnInit {
   leaveCounter: any;
   public allstudentdetails: any;
   getusebyfilter: any;
-  public selectFilter:any = {course:'', status:''};
+  public selectFilter:any = {c_id: '', course:'', st_status:''};
   dataSource!: MatTableDataSource<any>;
   public installmentsBackup:any[] = [];
   c_id : any = 3 ;
@@ -72,17 +72,6 @@ export class StDetailsPage implements OnInit {
     this.student_details = this.dataSource.filteredData
   }
 
-  async  select_campus($event:any){
-    console.log($event.target.value);
-    this.selectFilter = $event.target.value;
-    this.student_details = this.installmentsBackup ;
-    if(this.selectFilter != 'all'){
-       this.student_details = this.student_details.filter(val=> val.c_id == this.selectFilter)
-       this.campus_students = this.student_details.length
-       console.log(this.campus_students)
-       console.log(this.student_details)
-    } 
-  }
 
   // Student Get Method
   async Get_Students(){
@@ -113,58 +102,6 @@ export class StDetailsPage implements OnInit {
       
     }
 
-    async select_student_Course($event:any){
-      this.selectFilter.course = $event.target.value;
-      console.log($event.target.value);
-      // this.byCourse.course = $event.target.value;
-      // this.byCourse.c_id = this.data.c_id;
-      // console.log(this.byCourse);
-      if($event.target.value  == 'all'){
-        if(this.selectFilter.status === '' || this.selectFilter.status === 'all') {
-          this.student_details = this.getusebyfilter;
-        }
-        else {
-          this.student_details = this.getusebyfilter.filter((x: { st_status: any; }) => x.st_status == this.selectFilter.status);
-          }
-      }
-      else{
-      
-      if(this.selectFilter.status === '' || this.selectFilter.status === 'all') {
-      
-        this.student_details = this.getusebyfilter.filter((x: { course: any; }) =>x.course === this.selectFilter.course);
-        }
-        else {
-        this.student_details = this.getusebyfilter.filter((x: { st_status: any; course: any; }) => x.st_status == this.selectFilter.status &&  x.course === this.selectFilter.course);
-        }
-          console.log(this.student_details)
-    }
-    }
-  
-   async  select_status($event:any){
-      console.log($event.target.value);
-      this.selectFilter.status = $event.target.value;
-   if($event.target.value =='all'){
-    if(this.selectFilter.course === '' || this.selectFilter.course === 'all') {
-      this.student_details = this.getusebyfilter;
-    }
-    
-    else {
-      this.student_details = this.getusebyfilter.filter((x: { course: any; }) => x.course == this.selectFilter.course);
-      }
-   }
-   else{
-   
-   if(this.selectFilter.course === ''|| this.selectFilter.course === 'all') {
-   
-     this.student_details = this.getusebyfilter.filter((x: { st_status: any; }) =>x.st_status === this.selectFilter.status);
-     }
-     else {
-       
-     this.student_details = this.getusebyfilter.filter((x: { course: any; st_status: any; }) => x.course == this.selectFilter.course &&  x.st_status === this.selectFilter.status);
-     }
-       console.log(this.student_details)
-  }
-  }
 
   async refresh(){
     this.refresher=true
@@ -231,6 +168,24 @@ export class StDetailsPage implements OnInit {
     console.log('modal')
     return await modal.present();
   }
+  async  select_campus($event:any){
+    console.log($event.target.value);
+    this.selectFilter.c_id = $event.target.value;
+  }
 
+  async select_student_Course($event:any){
+    this.selectFilter.course = $event.target.value;
+    console.log($event.target.value);
+  }
+
+ async  select_status($event:any){
+    console.log($event.target.value);
+    this.selectFilter.st_status = $event.target.value;
+}
+  filterdata(){
+    this.selectFilter.c_id = this.data.c_id;
+    console.log(this.selectFilter)
+    this.ApiCall.getstudentfilter(this.selectFilter);
+  }
 
 }

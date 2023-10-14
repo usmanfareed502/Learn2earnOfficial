@@ -1,9 +1,4 @@
-.pendingg{
-    color: white;
-    background-color: chartreuse;
-    border-radius: 5px;
-    text-align: center;
-}
+
 .cancell{
     color: white;
     background-color: red;
@@ -63,24 +58,16 @@ td{
 }
 .pendingg{
     color: white;
-    background-color:  rgba(24, 24, 231, 0.842);
-    border-radius: 5px;
-    text-align: center;
-    padding: 2px;
-}
-.successfulll{
-    color: white;
-    background-color: rgba(5, 240, 5, 0.788);
-    border-radius: 5px;
-    text-align: center;
-    padding: 2px;
+    background: rgba(38, 214, 22, 0.788);
+    // border-radius: 5px;
+    // text-align: center;
 }
 .complete{
     color: white;
-    background-color: rgba(38, 214, 22, 0.788);
-    border-radius: 5px;
-    text-align: center;
-    padding: 2px;
+    background: blue;
+    // border-radius: 5px;
+    // text-align: center;
+    // padding: 2px;
 }
 .backbtn{
     margin-left: -15px;

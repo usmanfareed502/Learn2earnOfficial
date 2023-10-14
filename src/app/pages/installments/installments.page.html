@@ -86,7 +86,7 @@
         <!-- <ion-col size-lg="4" size-md="4"  size="12">
           <ion-label>Remaining Fee</ion-label>
           <p  class="text2">{{student_details.remaning_amount}}</p>
-        </ion-col> -->
+        </ion-col> -->  
         <ion-col size-lg="4" size-md="4"  size="12">
           <ion-label>Course</ion-label>
           <p  class="text2">{{student_details.course}}</p>
@@ -94,6 +94,10 @@
         <ion-col size-lg="4" size-md="4"  size="12">
           <ion-label>Total Installments</ion-label>
           <p  class="text2">{{student_details.total_installments}}</p>
+        </ion-col>
+        <ion-col size-lg="4" size-md="4"  size="12">
+          <ion-label>Installments Amount</ion-label>
+          <p  class="text2">{{student_details.installment_amount}}</p>
         </ion-col>
       </ion-row>
       <!-- <p style="text-align: center;" (click)="view_all_installment(student_details)" ><span class="color_primary"><ion-button class="button2">View</ion-button> </span> </p> -->
@@ -104,7 +108,7 @@
     <ion-row >
       <div class="d-flex">
       <h5 class="m-3">Current Installment no:</h5>
-      <h5 class="m-3 ms-1">{{current_instalment}}</h5>
+      <h5 class="m-3 ms-1">{{this.student_details.installment_no}}</h5>
       </div>
     </ion-row>
     <ion-row >
@@ -117,15 +121,15 @@
       <div class="col-lg-5 mb-2">
         <div class="form-group">
           <label class="text-label text2 label1">Installment Amount</label>
-          <ion-input type="number" [(ngModel)]="student_installments.advance"  (Change)="installment($event)"  fill="outline" required placeholder="Enter Amount"></ion-input>
+          <ion-input type="number" [(ngModel)]="this.student_details.installment_amount"  fill="outline" required placeholder="Enter Amount"></ion-input>
         </div>
       </div> 
-        <div class="col-lg-5 mb-2">
+        <!-- <div class="col-lg-5 mb-2">
         <div class="form-group">
           <label class="text-label text2 label1">Remaining Amount</label>
           <ion-input  type="number"  [(ngModel)]="student_installments.remaning_amount"    required disabled  fill="outline" placeholder="Remaining Amount"></ion-input>
         </div>
-      </div>
+      </div> -->
       <div class="col-lg-5 mb-2"> 
      
         <ion-button expand="block" color="tertiary"  (click)="Add_Installments()">

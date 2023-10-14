@@ -381,7 +381,7 @@
                         <!-- <td>{{data.cnic}}</td>             -->
                         <!-- <td>{{data.course}}</td>             -->
                         <td>{{data.c_duration}}</td>            
-                        <td><p [ngClass]="{'pendingg':data.status === 'pending','cancell':data.status === 'Cancel','successfulll':data.status === 'Successfull'}"style="margin:0px;">{{data.status}}</p></td>             
+                        <td><p [ngClass]="{'pendingg':data.f_status === 'pending','successfulll':data.f_status === 'paid'}"style="margin:0px;">{{data.f_status}}</p></td>             
                         <!-- <td>{{data.ad_date}}</td>  -->
                         <td>{{data.total_fee}}</td> 
                         <td>{{data.installment_no}}</td> 
@@ -438,8 +438,9 @@
                       <th scope="col">Addmission Date</th>
                       <th scope="col">Total Fee</th>
                       <th scope="col">Installment No</th>
-                      <th scope="col">Installment Amount</th>
-                      <th scope="col">Remaining Payment</th>
+          
+                      <th scope="col">Payable Amount</th>
+                      <!-- <th scope="col">Remaining Payment</th> -->
                       <!-- <th scope="col">Monthly Installment</th> -->
                       <th scope="col">Installment Date</th>
                   </tr>
@@ -455,12 +456,13 @@
                       <td>{{data.cnic}}</td>            
                       <td>{{data.course}}</td>            
                       <td>{{data.c_duration}}</td>            
-                      <td><p [ngClass]="{'pendingg':data.status === 'pending','cancell':data.status === 'Cancel','successfulll':data.status === 'Successfull'}"style="margin:0px;">{{data.status}}</p></td>             
+                      <td><p [ngClass]="{'pendingg':data.f_status === 'pending','successfulll':data.f_status === 'paid'}"style="margin:0px;">{{data.f_status}}</p></td>             
                       <td>{{data.ad_date}}</td> 
                       <td>{{data.total_fee}}</td> 
                       <td>{{data.installment_no}}</td> 
-                      <td>{{data.advance}}</td> 
-                      <td>{{data.remaning_amount}}</td> 
+                      <td>{{data.payable_amount}}</td> 
+                      <!-- <td>{{data.advance}}</td>  -->
+                      <!-- <td>{{data.remaning_amount}}</td>  -->
                       <!-- <td>{{data.per_installment}}</td>  -->
                       <td>{{data.date}}</td>
                   </tr>
