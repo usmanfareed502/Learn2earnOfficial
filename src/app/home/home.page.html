@@ -39,9 +39,9 @@
           </div>
         </ion-col>
         <ion-col size-lg="1" size-md="1.7" size="" (click)="refresh()"  style="margin-left: 5px;">
-          <a  class="btn btn-primary top2 refresh_button rounded primary1 light"  *ngIf="!refresher">
+          <ion-button  style="width: 150px;position: absolute;right: 17px;--border-radius:5px;margin-top: 9px;" *ngIf="!refresher">
             Refresh
-          </a>
+          </ion-button>
           <ion-spinner color="tertiary" name="circles" *ngIf="refresher" style="margin-top: 10px;margin-left:10px;"></ion-spinner>
         </ion-col>
       </ion-row>

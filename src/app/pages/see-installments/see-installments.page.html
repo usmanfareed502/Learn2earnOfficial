@@ -35,7 +35,9 @@
           </div>
         </ion-col>
         <ion-col size-lg="1" size-md="1.7" size="" (click)="refresh()" >
-          <a  class="btn btn-primary top refresh_button rounded primary1 light me-3"  *ngIf="!refresher">Refresh</a>
+          <ion-button  style="width: 150px;position: absolute;right: 17px;--border-radius:5px;margin-top:5px;" *ngIf="!refresher">
+            Refresh
+          </ion-button>
           <ion-spinner color="tertiary" name="circles" *ngIf="refresher" style="margin-top: 10px;margin-left:7px;"></ion-spinner>
         </ion-col>
       </ion-row>
@@ -112,19 +114,24 @@
               <ion-select-option value="paid">Successfull</ion-select-option>
             </ion-select>
         </ion-item> 
-      <ion-item>
-        <ion-input type="month" (ionChange)="get_installmentbymoont($event)"></ion-input>
+      <ion-item lines="none">
+        <!-- <ion-input type="month" (ionChange)="get_installmentbymoont($event)"></ion-input> -->
+        <input type="month" class="form-control" (ionChange)="get_installmentbymoont($event)">
       </ion-item>
-      <ion-button (click)="filterdata()">
-        <ion-icon name="filter-outline"></ion-icon>
-      </ion-button>
-      <ion-col size-lg="1" size-md="1.7" size="" (click)="refresh()">
-        <a class="btn btn-primary top refresh_button rounded primary1 light me-3" *ngIf="!refresher">
-          Refresh
-        </a>
-        <ion-spinner color="tertiary" name="circles" *ngIf="refresher"
-          style="margin-top: 10px;margin-left:10px;"></ion-spinner>
+    </ion-row>
+    <ion-row>
+      <ion-col size-lg="2" size-md="4">
+        <ion-button style="margin-left: 10px;--border-radius: 5px;" (click)="filterdata()">Filter
+          <ion-icon name="filter-outline"></ion-icon>
+        </ion-button>
       </ion-col>
+ <ion-col size-lg="2" size-md="4" size="" (click)="refresh()">
+  <ion-button  style="width: 150px;position: absolute;right: 17px;--border-radius:5px;margin-top:5px;" *ngIf="!refresher">
+    Refresh
+  </ion-button>
+      <ion-spinner color="tertiary" name="circles" *ngIf="refresher"
+        style="margin-top: 10px;margin-left:10px;"></ion-spinner>
+    </ion-col> 
     </ion-row>
     </ion-list>
   </div>
