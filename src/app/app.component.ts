@@ -32,6 +32,7 @@ export class AppComponent {
     this.router.navigate(['/login'])
     this.toast.LogoutSuccessfull();
     this.ionSplitPane.disabled = true
+    this.menu.enable(false);
   }
   see_account(){
     this.router.navigate(['see-account'])
