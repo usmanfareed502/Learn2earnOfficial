@@ -20,7 +20,10 @@ ion-select{
     transition: ease-in-out .3s;
   }
 }
-
+.form-control{
+  height: 45px;
+  margin-left: 6px;
+}
 .t2{
   margin: 25px;
   margin-bottom: 0;
@@ -31,7 +34,7 @@ ion-select{
 
 .c3{
   --background: var(--ion-color-primary);
-  box-shadow: var(--ion-color-primary) 0px 25px 50px -12px;
+  box-shadow: var(--ion-color-primary) 0px 20px 30px -10px;
   z-index: 1;
 }
 .st1{
