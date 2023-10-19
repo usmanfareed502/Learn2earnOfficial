@@ -50,7 +50,11 @@ const routes: Routes = [
   {
     path: 'team-detail',
     loadChildren: () => import('./pages/team-detail/team-detail.module').then( m => m.TeamDetailPageModule)
+  },  {
+    path: 'sidebar',
+    loadChildren: () => import('./pages/sidebar/sidebar.module').then( m => m.SidebarPageModule)
   },
+
 
 
 

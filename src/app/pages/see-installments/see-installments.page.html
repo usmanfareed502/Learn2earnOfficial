@@ -104,37 +104,47 @@
     </ion-item>
   </ion-list>
 
-  <div>
+  <!-- <div> -->
     <ion-list class="selectlist">
       <ion-row>
-     <ion-item>
+    
+      <ion-col  size-md="4">
+        <ion-item style="width: 100%;">
             <ion-select mode="ios" (ionChange)="select_status($event)" class="w-100" placeholder="Select Status">
               <ion-select-option value="all">All</ion-select-option>
               <ion-select-option value="pending">Pending</ion-select-option>
               <ion-select-option value="paid">Successfull</ion-select-option>
             </ion-select>
-        </ion-item> 
-      <ion-item lines="none">
+          </ion-item> 
+          </ion-col>
+    
+        <ion-col  size-md="4">
+             <ion-item lines="none" style="width: 100%;">
         <!-- <ion-input type="month" (ionChange)="get_installmentbymoont($event)"></ion-input> -->
         <input type="month" class="form-control" (ionChange)="get_installmentbymoont($event)">
       </ion-item>
-    </ion-row>
-    <ion-row>
-      <ion-col size-lg="2" size-md="4">
+      </ion-col>
+
+      <ion-col  size-md="2"  >
         <ion-button style="margin-left: 10px;--border-radius: 5px;" (click)="filterdata()">Filter
           <ion-icon name="filter-outline"></ion-icon>
         </ion-button>
       </ion-col>
- <ion-col size-lg="2" size-md="4" size="" (click)="refresh()">
+
+ <ion-col   size-md="2"   (click)="refresh()"  >
   <ion-button  style="width: 120px;position: absolute;right: 17px;--border-radius:5px;margin-top:5px;" *ngIf="!refresher">
     Refresh
   </ion-button>
       <ion-spinner color="tertiary" name="circles" *ngIf="refresher"
         style="margin-top: 10px;margin-left:10px;"></ion-spinner>
     </ion-col> 
+
+
     </ion-row>
+
+
     </ion-list>
-  </div>
+  <!-- </div> -->
 
   <ion-card style="border-radius: 8px;">
     <div class="card-body">
