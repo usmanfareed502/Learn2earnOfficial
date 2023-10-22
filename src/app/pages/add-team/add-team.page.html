@@ -1,6 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-segment color="dark" mode="md" [(ngModel)]="changesegment">
+    <ion-segment class="segment"
+    
+    color="dark" mode="md" [(ngModel)]="changesegment">
 
       <ion-segment-button value="Team">
         <ion-icon name="add"></ion-icon>
@@ -174,8 +176,9 @@
 
 
 
-            <ion-button (click)="Close(false)" class="add-button" fill="clear" mode="ios">Add Member</ion-button>
+            <!-- <ion-button (click)="Close(false)" class="add-button" fill="clear" mode="ios">Add Member</ion-button> -->
 
+            <ion-button  (click)="Close(false)" style="width: 120px;--border-radius:10px;margin: auto;height: 40px;"  >Add Member</ion-button>
           </ion-row>
         </ion-content>
       </ng-template>
@@ -216,8 +219,9 @@
           </ion-col>
 
           <ion-row>
-            <ion-button (click)="addtransaction(false)" class="addtransaction" fill="clear"
-              mode="ios">Submit</ion-button>
+            <!-- <ion-button (click)="addtransaction(false)" class="addtransaction" fill="clear"
+              mode="ios">Submit</ion-button> -->
+              <ion-button  (click)="addtransaction(false)" style="width: 120px;--border-radius:10px;margin: auto;height: 40px;"  >Submit</ion-button>
 
           </ion-row>
         </ion-content>
@@ -313,8 +317,10 @@
             </div>
           </ion-col>
           <ion-row>
-            <ion-button (click)="insertexpense(false)" class="add-button" color="tertiary" expand="block">Add
-              Expense</ion-button>
+            <!-- <ion-button (click)="insertexpense(false)" class="add-button" color="tertiary" expand="block">Add
+              Expense</ion-button> -->
+            
+              <ion-button  (click)="insertexpense(false)"     style="width: 120px;--border-radius:10px;margin: auto;height: 40px;"  >Add Expense</ion-button>
 
           </ion-row>
         </ion-content>
@@ -357,8 +363,10 @@
           </ion-col>
 
           <ion-row>
-            <ion-button (click)="insertexpensedetail(false)" class="addtransaction" color="tertiary"
-              mode="ios">Submit</ion-button>
+            <!-- <ion-button (click)="insertexpensedetail(false)" class="addtransaction" color="tertiary"
+              mode="ios">Submit</ion-button> -->
+              <ion-button (click)="insertexpensedetail(false)" style="width: 120px;--border-radius:10px;margin: auto;height: 40px;" 
+               >Submit</ion-button>
 
           </ion-row>
         </ion-content>
@@ -476,7 +484,9 @@
 
 
 
-        <ion-button (click)="Close(false)" class="addtransaction" color="tertiary">Add Member</ion-button>
+    <!-- <ion-button (click)="Close(false)" class="addtransaction" color="tertiary">Add Member</ion-button> -->
+       
+        
 
       </ion-row>
     </ion-content>

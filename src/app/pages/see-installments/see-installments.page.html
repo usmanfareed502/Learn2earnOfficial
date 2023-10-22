@@ -3,7 +3,8 @@
 
     <ion-searchbar  slot="end" style="text-align: left;" class="searchbar" type="animated"></ion-searchbar>
 
-    <ion-button fill="clear" color="light" (click)="home()" class="backbtn">
+    <ion-button style="margin-left: -30px;"
+    fill="clear" color="light" (click)="home()" class="backbtn">
       <ion-icon name="chevron-back-outline"></ion-icon>
       Back
     </ion-button>
@@ -126,13 +127,13 @@
       </ion-col>
 
       <ion-col  size-md="2"  >
-        <ion-button style="margin-left: 10px;--border-radius: 5px;" (click)="filterdata()">Filter
+        <ion-button style="margin-left: 10px;--border-radius: 5px;    margin-top: 15px;" (click)="filterdata()">Filter
           <ion-icon name="filter-outline"></ion-icon>
         </ion-button>
       </ion-col>
 
  <ion-col   size-md="2"   (click)="refresh()"  >
-  <ion-button  style="width: 120px;position: absolute;right: 17px;--border-radius:5px;margin-top:5px;" *ngIf="!refresher">
+  <ion-button  style="width: 120px;position: absolute;right: 17px;--border-radius:5px;margin-top:5px;    margin-top: 15px;" *ngIf="!refresher">
     Refresh
   </ion-button>
       <ion-spinner color="tertiary" name="circles" *ngIf="refresher"

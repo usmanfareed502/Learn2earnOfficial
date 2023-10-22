@@ -3,7 +3,8 @@
 
     <ion-searchbar  slot="end" style="text-align: left;" class="searchbar" type="animated"></ion-searchbar>
 
-    <ion-button fill="clear" color="light" (click)="home()" class="backinstallment">
+    <ion-button style="margin-left: -10px;"
+     fill="clear" color="light" (click)="home()" class="backinstallment">
       <ion-icon name="chevron-back-outline"></ion-icon>
       Back
     </ion-button>
@@ -124,15 +125,10 @@
           <ion-input type="number" [(ngModel)]="this.student_details.installment_amount"  fill="outline" required placeholder="Enter Amount"></ion-input>
         </div>
       </div> 
-        <!-- <div class="col-lg-5 mb-2">
-        <div class="form-group">
-          <label class="text-label text2 label1">Remaining Amount</label>
-          <ion-input  type="number"  [(ngModel)]="student_installments.remaning_amount"    required disabled  fill="outline" placeholder="Remaining Amount"></ion-input>
-        </div>
-      </div> -->
+    
       <div class="col-lg-5 mb-2"> 
      
-        <ion-button expand="block" color="tertiary"  (click)="Add_Installments()">
+        <ion-button expand="block" color="tertiary"  (click)="Add_Installments()" >
           Pay Now
         </ion-button>
       </div>

@@ -69,6 +69,8 @@ export class AddTeamPage implements OnInit {
         
       });
     }
+
+    
    // Open Update Modal
    setOpen(isOpen: boolean, data:any) {
     console.log(data)
@@ -211,4 +213,6 @@ expenseamountfilter(){
   console.log(this.filterDtata)
   this.apiCall.api_get_expenseamountbycidanddate(this.filterDtata)
 }
+
+
 }

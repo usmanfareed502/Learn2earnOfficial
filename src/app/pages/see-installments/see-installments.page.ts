@@ -67,6 +67,7 @@ export class SeeInstallmentsPage implements OnInit {
       this.student_Installments = res;
       this.installmentsBackup = res ;
       this.total = res;
+      console.log(this.total)
     });
 
     await  this.global.Pending_fee.subscribe( res => {
