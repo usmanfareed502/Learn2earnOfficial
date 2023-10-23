@@ -68,17 +68,19 @@ export class SeeInstallmentsPage implements OnInit {
       this.installmentsBackup = res ;
       this.total = res;
       console.log(this.total)
+      this.complete_FeeSt = this.total.filter((x: { f_status: string; }) => x.f_status === 'paid').length;
+      this.pending_FeeSt = this.total.filter((x: { f_status: string; }) => x.f_status === 'pending').length;
     });
 
-    await  this.global.Pending_fee.subscribe( res => {
-      this.pending_FeeSt =res;
-      console.log(res)
-    });
+    // await  this.global.Pending_fee.subscribe( res => {
+    //   this.pending_FeeSt =res;
+    //   console.log(res)
+    // });
 
-    await  this.global.Complete_fee.subscribe( res => {
-      this.complete_FeeSt =res;
-      console.log(res)
-    });
+    // await  this.global.Complete_fee.subscribe( res => {
+    //   this.complete_FeeSt =res;
+    //   console.log(res)
+    // });
 
   }
   searchItems(value : any){

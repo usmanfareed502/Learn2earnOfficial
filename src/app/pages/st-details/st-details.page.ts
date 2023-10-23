@@ -84,21 +84,25 @@ export class StDetailsPage implements OnInit {
         this.getusebyfilter = res;
         this.total = res.length;
         this.installmentsBackup = res ;
+        this.total = this.student_details;
+        this.activeCounter = this.student_details.filter((x: { st_status: string; }) => x.st_status === 'active').length;
+        this.deactiveCounter = this.student_details.filter((x: { st_status: string; }) => x.st_status === 'deactive').length;
+        this.leaveCounter = this.student_details.filter((x: { st_status: string; }) => x.st_status === 'leave').length;
       });
   
-      await  this.global.Active.subscribe( res => {
-        this.activeCounter =res;
-        console.log(res)
-      });
+      // await  this.global.Active.subscribe( res => {
+      //   this.activeCounter =res;
+      //   console.log(res)
+      // });
   
-      await this.global.Deactive.subscribe( res => {
-        this.deactiveCounter =res;
-        console.log(res)
-      } );
-      this.global.Leave.subscribe( res => {
-        this.leaveCounter =res;
-        console.log(this.deactiveCounter)
-      } );
+      // await this.global.Deactive.subscribe( res => {
+      //   this.deactiveCounter =res;
+      //   console.log(res)
+      // } );
+      // this.global.Leave.subscribe( res => {
+      //   this.leaveCounter =res;
+      //   console.log(this.deactiveCounter)
+      // } );
       
     }
 

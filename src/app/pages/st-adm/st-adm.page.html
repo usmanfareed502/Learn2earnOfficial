@@ -3,7 +3,7 @@
 
     <ion-searchbar  slot="end" style="text-align: left;" class="searchbar"  type="animated"></ion-searchbar>
 
-    <ion-button style="margin-left: -30px;" fill="clear" color="light" (click)="home()" class="backbtn">
+    <ion-button style="margin-left: -50px;" fill="clear" color="light" (click)="home()" class="backbtn">
       <ion-icon name="chevron-back-outline" (click)="home()"></ion-icon>
       Back
     </ion-button>
@@ -147,8 +147,16 @@
     </div>
   </ion-col>
   </ion-row>
-<ion-button expand="block" color="dark" class="button2" 
-(click)="Submit_Data()">Submit</ion-button> 
+  <ion-button expand="block" color="dark" class="button2" [disabled]="student_data.name ==='' || 
+student_data.f_name ==='' || student_data.st_gender ==='' || 
+student_data.contact_no ==='' || student_data.address ==='' ||
+ student_data.reference ==='' || student_data.cnic ==='' || 
+ student_data.course ===''|| student_data.c_duration ==='' ||
+ student_data.total_fee ===''|| student_data.per_installment ==='' || 
+ student_data.total_installments ===''|| student_data.remaning_amount ==='' ||student_data.rg_fee ===''"
+(click)="Submit_Data()">Submit</ion-button>
+<!-- <ion-button expand="block" color="dark" class="button2" 
+(click)="Submit_Data()">Submit</ion-button>  -->
 </ion-card>
 
 

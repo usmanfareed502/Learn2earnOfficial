@@ -4,7 +4,7 @@ import { ApiService } from 'src/app/core/api.service';
 import { AuthService } from 'src/app/core/auth.service';
 import { GlobalService } from 'src/app/core/global.service';
 import { format, parseISO, startOfMonth, addDays, addMonths } from 'date-fns';
-
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-st-adm',
   templateUrl: './st-adm.page.html',
@@ -17,7 +17,7 @@ export class StAdmPage implements OnInit {
   user: any;
   public end_date1: any;
 
-  constructor(public route: Router, public apiCall: ApiService, public gloabl: GlobalService, public authser: AuthService) { }
+  constructor(public route: Router, public apiCall: ApiService, public gloabl: GlobalService, public authser: AuthService , public alertController: AlertController) { }
 
   public student_data: any = { c_id: 1, a_id: '', name: '', f_name: '', st_gender: '', contact_no: '', address: '', reference: '', cnic: '', course: '', c_duration: '', upcoming_installment: '', ad_date: '', total_fee: '', per_installment: '', total_installments: '', remaning_amount: '', status: '', st_status: '', fee_status: '', end_date: '', rg_fee: '',installments:[] }
   ngOnInit() {
@@ -168,10 +168,22 @@ export class StAdmPage implements OnInit {
     this.student_data.c_id = this.data.c_id;
     this.student_data.a_id = this.data.c_id;
     this.student_data.end_date = this.end_date1;
-    console.log(this.student_data)
+    const alert = await this.alertController.create({
+      header: 'Are You Sure',
+      message: 'DO You Want To Add Student.',
+      buttons: [{
+        text: 'Okay',
+        handler: async () => {
+          console.log(this.student_data)
      await this.apiCall.AddStudents(this.student_data);
     this.student_data = { a_id: '', name: '', f_name: '', st_gender: '', contact_no: '', address: '', reference: '', cnic: '', course: '', c_duration: '', upcoming_installment: '', ad_date: '', total_fee: '', per_installment: '', total_installments: '', advance: '', remaning_amount: '', status: '', st_status: '', fee_status: '', rg_fee: '' }
     this.route.navigate(['st-details']);
+    },
+    }]
+     
+    });
+
+    await alert.present();
 
   }
 }

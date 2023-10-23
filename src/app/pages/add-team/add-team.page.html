@@ -1,9 +1,19 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-segment class="segment"
-    
-    color="dark" mode="md" [(ngModel)]="changesegment">
 
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="ios" class="py-2 px-2  header">
+    <ion-button (click)="home()"
+    style="margin-left: -80px;" fill="clear" color="light"   class="backbtn">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+      Back
+    </ion-button>
+    <ion-title>
+      Add Team
+      </ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+    <ion-segment  class="segment"
+    color="dark" mode="md" [(ngModel)]="changesegment">
       <ion-segment-button value="Team">
         <ion-icon name="add"></ion-icon>
         <ion-label>Team</ion-label>
@@ -13,8 +23,7 @@
         <ion-label>Expense</ion-label>
       </ion-segment-button>
     </ion-segment>
-  </ion-toolbar>
-</ion-header>
+ 
 
 <ion-content>
 
@@ -178,7 +187,10 @@
 
             <!-- <ion-button (click)="Close(false)" class="add-button" fill="clear" mode="ios">Add Member</ion-button> -->
 
-            <ion-button  (click)="Close(false)" style="width: 120px;--border-radius:10px;margin: auto;height: 40px;"  >Add Member</ion-button>
+            <ion-button  (click)="Close(false)" style="width: 120px;--border-radius:10px;margin: auto;height: 40px;" 
+            [disabled]="custdetail.name ==='' || 
+            custdetail.gender ==='' || custdetail.f_name ==='' || 
+            custdetail.contact_no ==='' || custdetail.address ==='' || custdetail.cinic ===''" >Add Member</ion-button>
           </ion-row>
         </ion-content>
       </ng-template>
@@ -221,7 +233,10 @@
           <ion-row>
             <!-- <ion-button (click)="addtransaction(false)" class="addtransaction" fill="clear"
               mode="ios">Submit</ion-button> -->
-              <ion-button  (click)="addtransaction(false)" style="width: 120px;--border-radius:10px;margin: auto;height: 40px;"  >Submit</ion-button>
+              <ion-button  (click)="addtransaction(false)" style="width: 120px;--border-radius:10px;margin: auto;height: 40px;" 
+              [disabled]="account.debit ==='' || 
+              account.credit ==='' ||account.description ==='' "
+              >Submit</ion-button>
 
           </ion-row>
         </ion-content>
@@ -320,7 +335,9 @@
             <!-- <ion-button (click)="insertexpense(false)" class="add-button" color="tertiary" expand="block">Add
               Expense</ion-button> -->
             
-              <ion-button  (click)="insertexpense(false)"     style="width: 120px;--border-radius:10px;margin: auto;height: 40px;"  >Add Expense</ion-button>
+              <ion-button  (click)="insertexpense(false)"     style="width: 120px;--border-radius:10px;margin: auto;height: 40px;" 
+              [disabled]="expenses.name ===''  "
+              >Add Expense</ion-button>
 
           </ion-row>
         </ion-content>
@@ -366,7 +383,10 @@
             <!-- <ion-button (click)="insertexpensedetail(false)" class="addtransaction" color="tertiary"
               mode="ios">Submit</ion-button> -->
               <ion-button (click)="insertexpensedetail(false)" style="width: 120px;--border-radius:10px;margin: auto;height: 40px;" 
-               >Submit</ion-button>
+              [disabled]="expensedetail.date ==='' || 
+              expensedetail.amount ==='' ||expensedetail.description ===''  "
+             
+              >Submit</ion-button>
 
           </ion-row>
         </ion-content>
@@ -537,7 +557,12 @@
 
         <ion-button (click)="addtransaction(false)" class="addtransaction" color="tertiary">Submit</ion-button>
 
+
+
+
+        
       </ion-row>
+    
     </ion-content>
   </ng-template>
 </ion-modal>

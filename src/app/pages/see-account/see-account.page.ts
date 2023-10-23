@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/api.service';
 import { GlobalService } from 'src/app/core/global.service';
 
@@ -17,7 +18,7 @@ export class SeeAccountPage implements OnInit {
   refresher=false;
   public filterDtata: any = { c_id: '', type:null, start:null, end:null}
 
-  constructor( public apicall: ApiService , public global: GlobalService, private datePipe: DatePipe) { }
+  constructor( public apicall: ApiService , public global: GlobalService, private datePipe: DatePipe,public route : Router) { }
 
   async ngOnInit() {
     await this.global.Userlogin.subscribe(res =>{
@@ -27,6 +28,9 @@ export class SeeAccountPage implements OnInit {
     this.getaccounttransaction();
       
 
+  }
+  home(){
+     this.route.navigate(['home']);
   }
   getaccounttransaction(){
      this.apicall.api_getacctransaction(this.data.c_id);

@@ -20,8 +20,6 @@ export class AlertService {
   
       await alert.present();
     }
-  
-
     // net error totast
     async connection() {
       const alert = await this.alertController.create({
@@ -35,4 +33,14 @@ export class AlertService {
     }
   
 
+    async sure() {
+      const alert = await this.alertController.create({
+        header: 'Are You Sure',
+        message: 'You Want To Add Data.',
+        buttons: ['OK'],
+       
+      });
+  
+      await alert.present();
+    }
 }

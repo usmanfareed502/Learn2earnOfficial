@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { format } from 'date-fns';
 import { AlertService } from 'src/app/core/alerts/alert.service';
@@ -32,7 +32,7 @@ export class InstallmentsPage implements OnInit {
 
   constructor(public route:Router,public toast:ToastService,
     public modalController: ModalController,public alert:AlertService,
-    public global:GlobalService,public ApiCall:ApiService,private config:NgSelectModule) { 
+    public global:GlobalService,public ApiCall:ApiService,private config:NgSelectModule , public alertController: AlertController) { 
       
     }
 
@@ -92,11 +92,23 @@ async Get_Students(){
      this.student_installments.c_id = this.student_details.c_id; 
      this.student_installments.m_id = this.student_details.m_id;
      this.student_installments.payable_amount  = this.student_details.installment_amount;
- await    this.ApiCall.Add_Installments(this.student_installments);
+  const alert = await this.alertController.create({
+    header: 'Are You Sure',
+    message: 'DO You Want To Pay installment amount.',
+    buttons: [{
+      text: 'Okay',
+      handler: async () => {
+        await    this.ApiCall.Add_Installments(this.student_installments);
    await   this.toast.Installments_Successfull();
    this.student_installments= {c_id:'', id:'',remaning_amount:'',a_month:'',upcoming_installment:''};
    this.student_details={name:''};
   await  this.route.navigate(['home']);
+  },
+  }]
+   
+  });
+
+  await alert.present();
  }
  
 
